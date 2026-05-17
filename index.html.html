@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Lee Fashion City - Simu kwa Mkopo | Michangano | Kwa Mpemba</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe4ed 100%);
+            color: #2d2d2d;
+            line-height: 1.6;
+        }
+
+        /* Classic, feminine, premium color scheme */
+        :root {
+            --pink-primary: #FF69B4;
+            --pink-soft: #FFB6C1;
+            --gold: #FFD700;
+            --gold-dark: #DAA520;
+            --white: #ffffff;
+            --gray-light: #f8f9fa;
+            --gray: #6c757d;
+            --dark: #2d2d2d;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--pink-primary), var(--gold));
+            padding: 20px 0;
+            color: var(--white);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .contact-bar {
+            background: rgba(0,0,0,0.2);
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 50px;
+            display: inline-block;
+        }
+
+        /* Navigation */
+        .nav {
+            background: var(--white);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--pink-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-dark);
+        }
+
+        /* Main Layout */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        @media (max-width: 992px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Products Section */
+        .section-title {
+            font-size: 2rem;
+            color: var(--pink-primary);
+            margin-bottom: 30px;
+            border-left: 5px solid var(--gold);
+            padding-left: 20px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #ffe6f0, #ffd9e8);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .product-image i {
+            font-size: 5rem;
+            color: var(--pink-primary);
+        }
+
+        .product-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--gold-dark);
+            margin: 10px 0;
+        }
+
+        .loan-price {
+            font-size: 1rem;
+            color: var(--pink-primary);
+            background: #ffe6f0;
+            padding: 8px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+        .loan-input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid var(--pink-soft);
+            border-radius: 10px;
+            font-family: inherit;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--pink-primary), var(--gold));
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        .btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(255,105,180,0.3);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .sidebar-section {
+            margin-bottom: 35px;
+        }
+
+        .sidebar-title {
+            font-size: 1.5rem;
+            color: var(--pink-primary);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--gold);
+            display: inline-block;
+        }
+
+        .loan-item {
+            background: #fff0f5;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: 0.3s;
+        }
+
+        .loan-item:hover {
+            background: #ffe6f0;
+            transform: translateX(5px);
+        }
+
+        .loan-item i {
+            font-size: 2rem;
+            color: var(--pink-primary);
+        }
+
+        .loan-item-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .loan-item-info p {
+            color: var(--gold-dark);
+            font-weight: 600;
+        }
+
+        /* Groups Section */
+        .groups-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .group-card {
+            background: linear-gradient(135deg, #fff0f5, #ffe6f0);
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .group-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .group-amount {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--gold-dark);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: var(--pink-primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 1000;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* Call Button */
+        .call-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: #FF69B4;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 1000;
+            text-decoration: none;
+        }
+
+        .call-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* Chatbot Modal */
+        .chatbot-modal {
+            display: none;
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            z-index: 1001;
+            overflow: hidden;
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, var(--pink-primary), var(--gold));
+            padding: 15px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-body {
+            padding: 15px;
+            height: 300px;
+            overflow-y: auto;
+        }
+
+        .chatbot-input {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-right: 10px;
+        }
+
+        .chat-message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .user-message {
+            background: var(--pink-soft);
+            text-align: right;
+        }
+
+        .bot-message {
+            background: #f0f0f0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            .whatsapp-float, .call-float {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+    <div class="container">
+        <div class="header-content">
+            <h1>🌸 LEE FASHION CITY 🌸</h1>
+            <p>Simu kwa Mkopo | Vifaa kwa Mkopo | Michangano</p>
+            <div class="contact-bar">
+                <i class="fas fa-map-marker-alt"></i> Kwa Mpemba, Dar es Salaam | 
+                <i class="fas fa-phone"></i> 0743823426
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Navigation -->
+<div class="nav">
+    <div class="container">
+        <div class="nav-links">
+            <a href="#simu">📱 Simu kwa Mkopo</a>
+            <a href="#michezo">🎮 Kukopa Vifaa</a>
+            <a href="#michangano">💰 Michangano</a>
+            <a href="#contact">📞 Wasiliana</a>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="main-grid">
+        <!-- Left Section: Phones -->
+        <div id="simu">
+            <h2 class="section-title">📱 Unataka Simu Gani? Chukua kwa Mkopo Leo!</h2>
+            <div class="products-grid">
+                <!-- iPhone 13 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="product-title">iPhone 13</h3>
+                    <p class="price">Bei Halisi: TSh 1,200,000</p>
+                    <p class="loan-price">Kwa Mkopo: TSh 100,000/mwezi x miezi 12</p>
+                    <input type="text" class="loan-input" placeholder="Andika mkopo unachotaka (TSH)">
+                    <button class="btn" onclick="requestLoan('iPhone 13')">Omba Mkopo</button>
+                </div>
+
+                <!-- Samsung A14 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="product-title">Samsung A14</h3>
+                    <p class="price">Bei Halisi: TSh 450,000</p>
+                    <p class="loan-price">Kwa Mkopo: TSh 37,500/mwezi x miezi 12</p>
+                    <input type="text" class="loan-input" placeholder="Andika mkopo unachotaka (TSH)">
+                    <button class="btn" onclick="requestLoan('Samsung A14')">Omba Mkopo</button>
+                </div>
+
+                <!-- Tecno Spark 10 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="product-title">Tecno Spark 10</h3>
+                    <p class="price">Bei Halisi: TSh 350,000</p>
+                    <p class="loan-price">Kwa Mkopo: TSh 29,200/mwezi x miezi 12</p>
+                    <input type="text" class="loan-input" placeholder="Andika mkopo unachotaka (TSH)">
+                    <button class="btn" onclick="requestLoan('Tecno Spark 10')">Omba Mkopo</button>
+                </div>
+
+                <!-- Infinix Hot 30 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="product-title">Infinix Hot 30</h3>
+                    <p class="price">Bei Halisi: TSh 380,000</p>
+                    <p class="loan-price">Kwa Mkopo: TSh 31,700/mwezi x miezi 12</p>
+                    <input type="text" class="loan-input" placeholder="Andika mkopo unachotaka (TSH)">
+                    <button class="btn" onclick="requestLoan('Infinix Hot 30')">Omba Mkopo</button>
+                </div>
+            </div>
+            <p style="margin-top: 20px; text-align: center; color: gray;"><i class="fas fa-check-circle" style="color: #FF69B4;"></i> Drafti zote za simu zipo kwenye maghala yetu Kwa Mpemba</p>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="sidebar" id="michezo">
+            <!-- Borrow Other Items -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">🎮 Kukopa Vifaa Nyumbani</h3>
+                <div class="loan-item">
+                    <i class="fas fa-bed"></i>
+                    <div class="loan-item-info">
+                        <h4>Mashuka</h4>
+                        <p>TSh 5,000 kwa wiki</p>
+                    </div>
+                </div>
+                <div class="loan-item">
+                    <i class="fas fa-thermometer-half"></i>
+                    <div class="loan-item-info">
+                        <h4>Friji</h4>
+                        <p>TSh 15,000 kwa wiki</p>
+                    </div>
+                </div>
+                <div class="loan-item">
+                    <i class="fas fa-fire"></i>
+                    <div class="loan-item-info">
+                        <h4>Jiko / Foroja</h4>
+                        <p>TSh 7,000 kwa wiki</p>
+                    </div>
+                </div>
+                <div class="loan-item">
+                    <i class="fas fa-couch"></i>
+                    <div class="loan-item-info">
+                        <h4>Samani za nyumbani</h4>
+                        <p>Bonyeza kuomba</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mchezo wa Kuzungusha Hela -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">🔄 Mchezo wa Kuzungusha Hela</h3>
+                <p>Unachangia kila wiki, unapata mapato makubwa!</p>
+                <div class="loan-item">
+                    <i class="fas fa-users"></i>
+                    <div class="loan-item-info">
+                        <h4>Group la TSh 3,000</h4>
+                        <p>Changia TSh 3,000 kwa wiki</p>
+                    </div>
+                </div>
+                <div class="loan-item">
+                    <i class="fas fa-crown"></i>
+                    <div class="loan-item-info">
+                        <h4>Group la TSh 10,000</h4>
+                        <p>Changia TSh 10,000 kwa wiki</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Michangano Section -->
+    <div id="michangano">
+        <h2 class="section-title">💰 JIUNGE NA MICHANGO YETU</h2>
+        <div class="groups-container">
+            <div class="group-card">
+                <i class="fas fa-hand-holding-usd" style="font-size: 3rem; color: #FF69B4;"></i>
+                <h3>Group la TSh 3,000</h3>
+                <p class="group-amount">TSh 3,000/wiki</p>
+                <button class="btn" onclick="joinGroup(3000)">Jiunge Sasa</button>
+            </div>
+            <div class="group-card">
+                <i class="fas fa-gem" style="font-size: 3rem; color: #FFD700;"></i>
+                <h3>Group la TSh 10,000</h3>
+                <p class="group-amount">TSh 10,000/wiki</p>
+                <button class="btn" onclick="joinGroup(10000)">Jiunge Sasa</button>
+            </div>
+            <div class="group-card">
+                <i class="fas fa-chart-line" style="font-size: 3rem; color: #25D366;"></i>
+                <h3>Mchezo wa Kuzungusha</h3>
+                <p>Pata faida kila wiki</p>
+                <button class="btn" onclick="spinGame()">Anzisha Mchezo</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="footer" id="contact">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>LEE FASHION CITY</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Kwa Mpemba, Dar es Salaam</p>
+                <p><i class="fas fa-phone"></i> 0743823426</p>
+                <p><i class="fab fa-whatsapp"></i> WhatsApp: 0743823426</p>
+            </div>
+            <div class="footer-section">
+                <h3>Masaa ya Kufungua</h3>
+                <p>Jumatatu - Jumamosi: 8:00am - 8:00pm</p>
+                <p>Jumapili: 10:00am - 4:00pm</p>
+            </div>
+            <div class="footer-section">
+                <h3>Link za Kujiunga</h3>
+                <p><a href="#">WhatsApp Group 3,000</a></p>
+                <p><a href="#">WhatsApp Group 10,000</a></p>
+                <p><a href="#">Telegram Channel</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 Lee Fashion City - Haki zote zimehifadhiwa | Biashara halisi Kwa Mpemba</p>
+        </div>
+    </div>
+</div>
+
+<!-- Floating Buttons -->
+<a href="https://wa.me/255743823426" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+<a href="tel:0743823426" class="call-float">
+    <i class="fas fa-phone-alt"></i>
+</a>
+
+<!-- Chatbot Modal -->
+<div id="chatbot" class="chatbot-modal">
+    <div class="chatbot-header">
+        <span><i class="fas fa-robot"></i> Roboti ya Lee Fashion City</span>
+        <span style="cursor: pointer;" onclick="closeChatbot()">&times;</span>
+    </div>
+    <div class="chatbot-body" id="chatBody">
+        <div class="chat-message bot-message">
+            👋 Habari! Mimi ni roboti ya Lee Fashion City. Unaweza kuuliza kuhusu mikopo, simu, au michangano. 
+            Kumbuka: Ombi lako linakaguliwa kwa makini!
+        </div>
+    </div>
+    <div class="chatbot-input">
+        <input type="text" id="chatInput" placeholder="Andika ujumbe wako hapa...">
+        <button onclick="sendChatMessage()">Tuma</button>
+    </div>
+</div>
+
+<script>
+    // Show chatbot after 3 seconds or on demand
+    setTimeout(() => {
+        document.getElementById('chatbot').style.display = 'block';
+    }, 5000);
+
+    function closeChatbot() {
+        document.getElementById('chatbot').style.display = 'none';
+    }
+
+    function sendChatMessage() {
+        const input = document.getElementById('chatInput');
+        const message = input.value.trim();
+        if (!message) return;
+
+        const chatBody = document.getElementById('chatBody');
+        
+        // Add user message
+        const userMsgDiv = document.createElement('div');
+        userMsgDiv.className = 'chat-message user-message';
+        userMsgDiv.innerHTML = message;
+        chatBody.appendChild(userMsgDiv);
+        
+        // Bot response (reject bot - refuses invalid requests)
+        setTimeout(() => {
+            const botMsgDiv = document.createElement('div');
+            botMsgDiv.className = 'chat-message bot-message';
+            let response = "🙏 Ahsante kwa ujumbe wako. Tunakagua ombi lako kwa makini. Ikiwa sio sahihi, tunaweza kukataa. Tafadhali tembelea ofisi Kwa Mpemba au piga 0743823426 kwa uhakika.";
+            if (message.toLowerCase().includes('simu') || message.toLowerCase().includes('mkopo')) {
+                response = "📱 Unahitaji simu kwa mkopo? Tembelea sehemu ya simu kwenye website yetu. Roboti inakataa maombi yasiyo na taarifa kamili. Tafadhali wasiliana nasi moja kwa moja kwa 0743823426.";
+            } else if (message.toLowerCase().includes('group') || message.toLowerCase().includes('changia')) {
+                response = "💰 Kujiunga na group la kuchangia, bonyeza kitufe cha 'Jiunge Sasa' kwenye website. Roboti inakukumbusha: michango yote inathibitishwa ofisini Kwa Mpemba.";
+            }
+            botMsgDiv.innerHTML = response;
+            chatBody.appendChild(botMsgDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }, 1000);
+        
+        input.value = '';
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function requestLoan(phoneModel) {
+        alert(`✅ Umeomba mkopo kwa ${phoneModel}. Roboti itakagua ombi lako. Utapigiwa simu kwa 0743823426 au WhatsApp kwa uhakika. Asante!`);
+        // In real implementation, you'd send this to a backend
+    }
+
+    function joinGroup(amount) {
+        alert(`💰 Umeonyesha nia ya kujiunga na group la TSh ${amount} kwa wiki. Tafadhali wasiliana nasi kwa WhatsApp 0743823426 au tembelea ofisi Kwa Mpemba ili kukamilisha usajili. Asante!`);
+    }
+
+    function spinGame() {
+        alert(`🎲 Mchezo wa kuzungusha hela! Unahitaji kuchangia kila wiki. Tafadhali piga 0743823426 au wasiliana na roboti kwa maelekezo zaidi.`);
+    }
+
+    // Optional: Open chatbot when clicking on a button if needed
+    document.querySelector('.whatsapp-float').addEventListener('click', function(e) {
+        // Allow default WhatsApp link
+    });
+</script>
+
+</body>
+</html>
